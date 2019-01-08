@@ -1,6 +1,5 @@
-**[This code belongs to the "Implementing a CNN for Text Classification in Tensorflow" blog post.](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)**
+** 基于 dennybritz's 项目 [cnn-text-classification-tf](https://github.com/dennybritz/cnn-text-classification-tf), 添加RNN+Attention 实现，同时对代码进行了简化和修改**
 
-It is slightly simplified implementation of Kim's [Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1408.5882) paper in Tensorflow.
 
 ## Requirements
 
@@ -10,59 +9,60 @@ It is slightly simplified implementation of Kim's [Convolutional Neural Networks
 
 ## Training
 
-Print parameters:
-
-```bash
-./train.py --help
-```
+- 首先在config.py中设置模型参数，具体参数含义如下：
 
 ```
-optional arguments:
-  -h, --help            show this help message and exit
-  --embedding_dim EMBEDDING_DIM
-                        Dimensionality of character embedding (default: 128)
-  --filter_sizes FILTER_SIZES
-                        Comma-separated filter sizes (default: '3,4,5')
-  --num_filters NUM_FILTERS
-                        Number of filters per filter size (default: 128)
-  --l2_reg_lambda L2_REG_LAMBDA
-                        L2 regularizaion lambda (default: 0.0)
-  --dropout_keep_prob DROPOUT_KEEP_PROB
-                        Dropout keep probability (default: 0.5)
-  --batch_size BATCH_SIZE
-                        Batch Size (default: 64)
-  --num_epochs NUM_EPOCHS
-                        Number of training epochs (default: 100)
-  --evaluate_every EVALUATE_EVERY
-                        Evaluate model on dev set after this many steps
-                        (default: 100)
-  --checkpoint_every CHECKPOINT_EVERY
-                        Save model after this many steps (default: 100)
-  --allow_soft_placement ALLOW_SOFT_PLACEMENT
-                        Allow device soft device placement
-  --noallow_soft_placement
-  --log_device_placement LOG_DEVICE_PLACEMENT
-                        Log placement of ops on devices
-  --nolog_device_placement
+config parameters:
+   # 常规参数
+  -- learning_rate    学习率
+  -- training_steps   迭代次数
+  -- batch_size       批数据量
+  -- display_step     多少次打印一次结果
+  -- evaluate_every   多少次评估一次模型
+  -- checkpoint_every 多少次保存一次模型
+  -- num_checkpoints  保存模型个数
+  -- early_stop_steps 提前停止
+  
+  
+  # 网络参数
+  -- num_hidden        隐藏神经元个数
+  -- num_classes       类别数目
+  -- dropout_keep_prob dropout比例
+  -- l2_reg_lambda     l2正则化强度
+  
+  # CNN 网络参数
+  -- filter_sizes      卷积核规格
+  # RNN 网络参数
+  -- network           网络类型lstm/gru
+  -- bi_drection       是否选择双向网络
+  -- timesteps = 56    序列长度
+  -- attention_size    attention神经元个数
+  
+   # 硬件设置
+  -- allow_soft_placement = True
+  -- log_device_placement = False
+  
+   # 数据路径
+  -- dev_sample_percentage = 0.1    验证集比例
+  -- positive_data_file = "./data/rt-polaritydata/rt-polarity.pos"
+  -- negative_data_file = "./data/rt-polaritydata/rt-polarity.neg"
 
 ```
 
 Train:
 
-```bash
-./train.py
+```
+python train.py
 ```
 
 ## Evaluating
 
-```bash
-./eval.py --eval_train --checkpoint_dir="./runs/1459637919/checkpoints/"
-```
-
-Replace the checkpoint dir with the output from the training. To use your own data, change the `eval.py` script to load your data.
-
+'''
+待加入
+'''
 
 ## References
 
 - [Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1408.5882)
 - [A Sensitivity Analysis of (and Practitioners' Guide to) Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1510.03820)
+- [Hierarchical Attention Networks for Document Classification](http://www.aclweb.org/anthology/N16-1174)
