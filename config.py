@@ -17,6 +17,7 @@ class Config():
 
 
         # Network Parameters
+        self.embedding_size = 128
         self.num_hidden = 128  # hidden layer num of features
         self.num_classes = 2  # MNIST total classes (0-9 digits)
         self.dropout_keep_prob = 0.5
