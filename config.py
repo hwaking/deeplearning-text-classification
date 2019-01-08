@@ -12,11 +12,11 @@ class Config():
         self.display_step = 150
         self.evaluate_every = 150
         self.checkpoint_every = 150
+        self.num_checkpoints = 3
         self.early_stop_steps = 5
 
 
         # Network Parameters
-        self.embedding_dim = 128
         self.num_hidden = 128  # hidden layer num of features
         self.num_classes = 2  # MNIST total classes (0-9 digits)
         self.dropout_keep_prob = 0.5
@@ -42,5 +42,4 @@ class Config():
         self.positive_data_file = "./data/rt-polaritydata/rt-polarity.pos"
         self.negative_data_file = "./data/rt-polaritydata/rt-polarity.neg"
 
-        # Training parameters
-        self.num_checkpoints = 3
+        
