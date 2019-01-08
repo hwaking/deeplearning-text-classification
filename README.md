@@ -25,6 +25,7 @@ config parameters:
   
   
   # 网络参数
+  -- embedding_size    词向量embedding长度
   -- num_hidden        隐藏神经元个数
   -- num_classes       类别数目
   -- dropout_keep_prob dropout比例
