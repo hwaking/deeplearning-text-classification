@@ -53,7 +53,13 @@ config parameters:
 Train:
 
 ```
-python train.py
+# text cnn training command
+python train_cnn.py
+
+
+# text rnn training command
+python train_rnn.py
+
 ```
 
 ## Evaluating
